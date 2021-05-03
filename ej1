@@ -1,0 +1,30 @@
+/*Implementar una función reciba un arreglo de enteros y su tamano y retorne la suma de los elementos de un arreglo.
+Tamaño del arreglo 1000000. (Iterativa y recursiva)*/
+
+#include <iostream>
+#include <time.h>
+#include <stdlib.h>
+
+using namespace std;
+
+long long suma(const long long array[],const long long tam);  
+
+int main(){
+    srand(time(NULL));                                         
+    long long tam = 1000000;
+    long long *array = new long long[tam];                     
+    for (long long i = 0; i < tam; i++)             
+    {
+        array[i] = rand() % 11+1;
+    }
+    cout<<"Resultado: "<<suma(array,tam)<<endl;
+    delete[] array;
+    return 0;
+}
+
+long long suma(const long long array[],const long long tam){
+    long long sum = 0;
+    for (long long i = 0; i < tam; sum += array[i++]);
+    return sum;
+
+}
