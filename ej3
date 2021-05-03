@@ -1,0 +1,27 @@
+/*Implementar una función que ordene los elementos de un arreglo: ascendente. Tamaño del arreglo 1000000*/
+
+#include <iostream>
+#include <ctime>
+using namespace std;
+
+void ordenar(int array[],int tam);  
+int main(){
+
+    int tam=1000000;
+    int *a =new int[tam] ,aux;      
+
+    srand((unsigned)time(0));        
+    for(int i=0;i<tam;i++)
+        a[i]=(rand()%10)+1;  
+    for(int i=0;i<tam;i++)  
+      cout<<a[i]<<" ";
+
+    cout<<endl;
+    ordenar(a,tam);
+
+    for(int i=0; i<tam;i++)              
+      cout<<a[i]<< " ";
+
+    delete[] a;
+    return 0;
+}
