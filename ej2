@@ -1,0 +1,39 @@
+/*Implementar una función que invierta los elementos de un arreglo de enteros (Iterativa y recursiva). Tamaño del
+arreglo 1000000*/
+
+#include <iostream>
+#include <ctime>
+#include <iomanip>
+
+using namespace std;
+
+void invertir(int array[], int cant);             
+int main(){
+    int tam=100;
+    int *a = new int[tam],aux;      
+    srand((unsigned)time(0));       
+    for(int i=0;i<tam;i++)
+        a[i]=(rand()%10)+1;         
+        
+    for(int i=0;i<tam;i++)
+      cout<<a[i]<<" ";
+
+    cout<<endl;
+    cout<<"Resultado inverso: "<<endl;
+    invertir(a,tam);
+    cout<<endl;
+
+    for(int i=0;i<tam;i++)
+       cout<<a[i]<<" ";
+    delete[] a;
+}
+void invertir(int array[], int cant){      
+    int aux;
+    for(int i=0;i<cant/2;i++){                       
+        aux = array[i];
+        array[i]= array[cant-1-i];
+        array[cant-1-i]=aux;
+    }
+    for(int i=0;i<cant;i++)
+       cout<<array[i]<<" ";
+}
