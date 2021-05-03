@@ -1,0 +1,25 @@
+
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+int main(){
+    int i,j,comparar,tam;
+    char aux[100];                                      
+    char cadena[][100]={"ab","1aorde","1bvion","0ias"};
+    tam=sizeof(cadena)/sizeof(cadena[0]);              
+    for(i=0;i<tam;i++){                                
+        for(j=0;j<tam;j++){
+            comparar= strcmp(cadena[j],cadena[j+1]);    
+            if(comparar>0){                     
+                strcpy(aux,cadena[j]);                 
+                strcpy(cadena[j],cadena[j+1]);
+                strcpy(cadena[j+1],aux);
+            }
+        }
+    }
+    for(i=0;i<tam;i++)                                  
+        cout<<cadena[i]<<" ";
+
+    return 0;
+}
