@@ -1,39 +1,40 @@
 /*Implementar una función que invierta los elementos de un arreglo de enteros (Iterativa y recursiva). Tamaño del
 arreglo 1000000*/
 
-#include <iostream>
+#include <iostream> 
 #include <ctime>
 #include <iomanip>
 
 using namespace std;
 
-void invertir(int array[], int cant);             
+void invertir(int array[], int cant); /*se declara el prototipo y argumentos, array y cant, ambos de tipo entero*/
+
 int main(){
     int tam=100;
-    int *a = new int[tam],aux;      
-    srand((unsigned)time(0));       
-    for(int i=0;i<tam;i++)
-        a[i]=(rand()%10)+1;         
+    int *a = new int[tam],aux;   /*variable con reserva dinamica*/ 
+
+    srand((unsigned)time(0));   /*codigo que incicia numeros aleatorios, unsigned para que no repita el mismo numero 
+                                aleaotio cada ves que se ejecute*/
+    for(int i=0;i<tam;i++)      /*en este bucle inicializamos en 0 con la condicion que sea menor al tamaño y vaya incrementando*/
+        a[i]=(rand()%10)+1;     /*se guardaran los valores aleatorios del 1 al 10*/
         
-    for(int i=0;i<tam;i++)
-      cout<<a[i]<<" ";
+    for(int i=0;i<tam;i++)      /*buclefor para asignar espacios a los valores sin invertir*/
+      cout<<a[i]<<" ";  
 
-    cout<<endl;
-    cout<<"Resultado inverso: "<<endl;
-    invertir(a,tam);
+    cout<<endl;                         /*salto de linea*/
+    cout<<"Resultado inverso: "<<endl;  
+    invertir(a,tam);                    /*llamado a la funcion invertir*/              
     cout<<endl;
 
-    for(int i=0;i<tam;i++)
+    for(int i=0;i<tam;i++)              /*bucle que nos da el espacio entre valores del resultado ya invertido*/
        cout<<a[i]<<" ";
-    delete[] a;
+    delete[] a;                         /*con delete se libera la memoria dinámica reservada con new*/
 }
-void invertir(int array[], int cant){      
-    int aux;
-    for(int i=0;i<cant/2;i++){                       
-        aux = array[i];
-        array[i]= array[cant-1-i];
-        array[cant-1-i]=aux;
+void invertir(int array[], int cant){   /*implementacion de la funcion*/  
+    int aux;                            /*variable auxiliar para guardar las iteraciones*/
+    for(int i=0;i<cant/2;i++){          /*con este bucle vamos a intercambiar los valores random desde la mitad*/                  
+        aux = array[i];                 /*y nuestro auxiliar va ir guardando cada valor*/
+        array[i]= array[cant-1-i];      /*para luego intercambiar la posicion con el anterior elemento*/
+        array[cant-1-i]=aux;            
     }
-    for(int i=0;i<cant;i++)
-       cout<<array[i]<<" ";
 }
