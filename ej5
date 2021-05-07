@@ -1,0 +1,35 @@
+/*Implemente una función que reciba dos cadenas a y b; dicha función debe concatenar la cadena a a la cadena b.
+(asuma que la cadena b tiene el tamaño suficiente para contener los elementos de a)*/
+
+
+#include <iostream>
+#include <string.h>
+using namespace std;
+
+int main(){
+
+    char array1[11]="Concatenar";            /*declaramos el tamaño de nuestros arreglos y el valor que iran dentro*/
+    char array2[20]="Cadenas";               /*en este caso de tipo caracter*/   
+    char array3[100];                        /*con un 3er arreglo para que sea el arreglo que va a mostrar los dos arreglos concatenados*/
+    
+    int i=0,j=0,tam1,tam2;                  /*se declara variables iterativas tanto i como j y los tamaños*/
+    tam1=sizeof(array1);                    /*con sizeof hace que se devuelva el numero de bytes que se utilizan para almacenar un valor*/
+    tam2=sizeof(array2);
+    
+    if(tam1<tam2){                          /*si el tamaño de la cadena1 es menor que la cadena2 */          
+        while(array1[i] != '\0'){           /*mientras que sea diferente al valor final*/
+            array3[i]=array1[i];            /*se va a asignar esa cadena a la cadena 3*/
+            i++;                            /*y va incrementando el valor*/
+        }
+        array3[i] = ' ';                    /*le da un espacio entre caracteres a la cadena 3*/
+        i++;                                   
+        while(array2[j] != '\0'){           /*para el arreglo2 repetimos la misma funcion*/
+            array3[i+j]=array2[j];          /*que con el arreglo1*/
+            j++;
+        }
+        cout<<array3;                   
+    }
+    else
+        cout<<"No coinciden las condiciones"<<endl;     /*y si el numero de elementos en las cadenas no coincide */  
+    return 0;                                        /*con las funciones aparecera el mensaje de que no coincide*/
+}
