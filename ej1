@@ -1,30 +1,34 @@
 /*Implementar una función reciba un arreglo de enteros y su tamano y retorne la suma de los elementos de un arreglo.
 Tamaño del arreglo 1000000. (Iterativa y recursiva)*/
 
-#include <iostream>
+#include <iostream>                                             
 #include <time.h>
 #include <stdlib.h>
 
 using namespace std;
 
-long long suma(const long long array[],const long long tam);  
+long long suma(long long array[],long long tam);    /*declaramos el prototipo y los argumentos de la funcion, un arreglo de tipo long long 
+                                                    y una variable tam tambien de tipo long long*/
 
-int main(){
-    srand(time(NULL));                                         
-    long long tam = 1000000;
-    long long *array = new long long[tam];                     
-    for (long long i = 0; i < tam; i++)             
+int main(){                                         
+    srand(time(NULL));                              /*con time null establece numeros aleatorios con time null hace que los numeros generados sean 
+                                                    diferentes por cada ejecucion*/                           
+    long long tam = 1000000;                        /*definimos el tamaño de nuestra variable en este caso un millon*/
+    long long *array = new long long[tam];          /*creamos un puntero para que tome una variable con reserva dinamica de memoria, se realiza
+                                                    dinamicamente en tiempo de ejecucion, hace que reservemos una cantidad exacta de memoria*/
+    for (long long i = 0; i < tam; i++)             /*en este bucle inicializamos en 0 con la condicion que sea menor al tamaño y vaya incrementando*/  
     {
-        array[i] = rand() % 11+1;
+        array[i] = rand() % 11+1;                   /*se guardan los numeros aleatorios en el arreglo, estos van comprendidos entre 1 y 10, ya que
+                                                    originalmente fueron de 0 a 9*/
     }
-    cout<<"Resultado: "<<suma(array,tam)<<endl;
-    delete[] array;
+    cout<<"Resultado: "<<suma(array,tam)<<endl;     /*en pantalla se mostrara la suma*/
+    delete[] array;                                 /*con el delete se libera la memoria dinámica reservada con new*/
     return 0;
 }
 
-long long suma(const long long array[],const long long tam){
-    long long sum = 0;
-    for (long long i = 0; i < tam; sum += array[i++]);
-    return sum;
-
+long long suma(long long array[],long long tam){                /*funcion suma con los parametros; array t tam ambos de tipo long long*/
+    long long sum = 0;                                          /*declaramos la suma igual a 0*/  
+    for (long long i = 0; i < tam; sum = sum + array[i++]);     /*inicializamos en 0 con la condicion que sea menor que el tamaño y va*/
+    return sum;                                                 /*a sumar los valores que guardó en el arreglo*/
 }
+
