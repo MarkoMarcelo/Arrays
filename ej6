@@ -1,25 +1,27 @@
+/*Implemente una función que reciba un arreglo de cadenas y su tamaño y ordene lexicográficamente dicho arreglo.
+Tamaño del arreglo 1000000*/
 
 #include <iostream>
 #include <string.h>
 using namespace std;
 
 int main(){
-    int i,j,comparar,tam;
-    char aux[100];                                      
-    char cadena[][100]={"ab","1aorde","1bvion","0ias"};
-    tam=sizeof(cadena)/sizeof(cadena[0]);              
-    for(i=0;i<tam;i++){                                
-        for(j=0;j<tam;j++){
-            comparar= strcmp(cadena[j],cadena[j+1]);    
-            if(comparar>0){                     
-                strcpy(aux,cadena[j]);                 
+    int i,j,comparar,tam;                                       /*se declaran variables iterativas i j y el tamaño con comparar*/
+    char aux[100];                                              /*se le da un tamaño al arreglo auxiliar de tipo char*/
+    char cadena[][100]={"ab","1aorde","1bvion","0ias","000"};   /*a la cadena de tamaño 100 se le asignan los caracteres que van a ordenarse*/
+    tam=sizeof(cadena)/sizeof(cadena[0]);                       /*saca un total de caracteres, el numero de espacios que son 5 x 100, donde*/
+    for(i=0;i<tam;i++){                                         /*100 es el numero de caracteres por espacio. en este caso solo trabajamos con el*/
+        for(j=0;j<tam;j++){                                     /*tamaño del arreglo total por eso divide sizeof(cadena)/numero de espacios*/
+            comparar= strcmp(cadena[j],cadena[j+1]);            /*strcmp comparacion binaria de caracteres de las 2 cadenas*/
+            if(comparar>0){                                     /*los dos bucles for anteriores es par el doble recorrido*/
+                strcpy(aux,cadena[j]);                          /*strcpy es una funcion de la libreria string que copia una cadena con la siguiente*/
                 strcpy(cadena[j],cadena[j+1]);
                 strcpy(cadena[j+1],aux);
             }
         }
     }
-    for(i=0;i<tam;i++)                                  
-        cout<<cadena[i]<<" ";
-
+    for(i=0;i<tam;i++)                                            
+        cout<<cadena[i]<<" ";                                   /*luego hacemos un bucle for para crear un espacio entre las caracteristicas*/       
+                                                                /*que decidimos ordenar*/
     return 0;
 }
