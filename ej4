@@ -1,0 +1,37 @@
+/*Implemente una función que reciba una
+cadena y retorne su tamaño. (Iterativa y recursiva)*/
+
+#include <iostream>
+using namespace std;
+void size_iterativo(char array[]);          /*prototipo de funcion para la forma iterativa*/
+int size_recursiva(char array[],int pos);   /*prototipo de funcion para la forma recursiva*/
+
+int resultado=0;                            /*se declara una variable resultado inicializando en 0*/
+int main(){     
+    
+    char cad1[100];                         /*le asignamos el tamaño a nuesra cadena en este caso 100*/         
+    int posicion=0;                         /*le damos una posicion inicial, por defecto 0*/
+    cout<<"Frase: "<<endl;                  /*para ingresar nuestra frase indicamos en el cout frase*/
+    cin.getline(cad1,100);                  /*ingresamos nuestra cadena*/
+    cout<<"Forma iterativa"<<endl;          /*indicamos que ira la forma iterativa*/
+    size_iterativo(cad1);                   /*llamamos a nuestrafuncion*/
+    cout<<"Forma Recursiva"<<endl;          /*indicamos que ira la forma recursiva*/
+    cout<<"La palabra \""<<cad1<<"\" tiene "<<size_recursiva(cad1,posicion)<<" caracteres"<<endl;
+    return 0;
+}
+
+void size_iterativo(char array[]){          /*implementacion de funcion*/
+    
+    for (int i=0; i<100 && array[i] != '\0';i++)    /* se puede poner tanto != como > porque '\0' tiene valor cero o -1*/
+        resultado=i+1;                              /*añadimos un 1 por la posicion 0 que no sumara*/
+    cout<<"La palabra \""<<array<<"\" tiene "<<resultado<<" caracteres"<<endl;
+}
+
+int size_recursiva(char array[], int pos){  /*implementacion de funcion*/
+
+    int resultado=0;
+    if(array[pos]=='\0')                    /*caso base, si nuestra posicion es igual al fin del caracter de cadena*/
+        return resultado;                   /*retornara el tamaño que es cero*/
+    else                                    /*sino*/
+        return (resultado+1)+size_recursiva(array,pos+1);  /*ira sumando y aumentando la posicion recursivamete*/
+}   
