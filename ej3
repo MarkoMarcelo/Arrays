@@ -4,24 +4,41 @@
 #include <ctime>
 using namespace std;
 
-void ordenar(int array[],int tam);  
+void ordenar(int array[],int tam);  /*prototipo de la funcion con los argumentos, array y tam de tipo entero ambos*/
 int main(){
 
-    int tam=1000000;
-    int *a =new int[tam] ,aux;      
+    int tam=100;                    /*se pone el valor de la variable tam, en este caso para el valor de un millon
+                                    el codigo tarda en compilar, pero con 100 se puede visualizar el ejemplo en ejecicion sin demora*/ 
 
-    srand((unsigned)time(0));        
-    for(int i=0;i<tam;i++)
-        a[i]=(rand()%10)+1;  
-    for(int i=0;i<tam;i++)  
-      cout<<a[i]<<" ";
+    int *a =new int[tam] ,aux;      /*creamos un puntero para que tome una variable con reserva dinamica de memoria, se realiza
+                                    dinamicamente en tiempo de ejecucion, hace que reservemos una cantidad exacta de memoria*/
 
-    cout<<endl;
-    ordenar(a,tam);
+    srand(time(0));                 /*establece numeros aleatorios*/    
+    for(int i=0;i<tam;i++)          /*en este bucle inicializamos en 0 con la condicion que sea menor al tamaño y vaya incrementando*/
+    a[i]=(rand()%10)+1;             /*se guardan los numeros aleatorios en el arreglo, estos van comprendidos entre 1 y 10, ya que
+                                    originalmente fueron de 0 a 9*/
+        
+    for(int i=0; i<tam;i++)         /*con el bucle for inicializamos en 0 con la condicion que sea menor al tamaño cada iteracion*/
+    cout<<a[i]<<" ";                /*nos va a mostar en pantalla los numeros generados pero no ordenados*/
 
-    for(int i=0; i<tam;i++)              
-      cout<<a[i]<< " ";
+    cout<<endl;                     /*separacion entre numeros aleatorios y ordenados*/
+    
+    ordenar(a,tam);                 
+    for(int i=0; i<tam;i++)         /*bucle para ordenar darle un espacio a cada numero aleatorios generado*/            
+    cout<<a[i]<< " ";               /*nos muestra en pantalla los espacios entre numeros*/
 
-    delete[] a;
+    delete[] a;                     /*con delete se libera la memoria dinámica reservada con new*/
     return 0;
+}
+void ordenar(int array[],int tam){      /*funcion ordenar con sus argumentos*/ 
+    if(tam>0){                          /*si el pamaño es mayor a 0*/    
+        for (int i=0; i<tam-1; i++){    /*pora cada elemento que vaya desde 0 y sea menos que el elemento anterior*/ 
+            if(array[i]>array[i+1]){    /*compara la posicion incial con la siguiente*/
+                int aux=array[i];       /*y el auxiliar va a guardar el mayor valor*/
+                array[i]=array[i+1];    /*y ningun valor mayor va a estar a la izqueirda de cada valor */
+                array[i+1]=aux;         /*y cambia de posicion con el auxiliar*/
+            }
+        }
+    ordenar(array, tam-1);              /*funcion que va a ordenar los numeros*/
+    }
 }
